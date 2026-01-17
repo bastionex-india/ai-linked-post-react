@@ -1,0 +1,7 @@
+{
+  "name": "TrendPost AI - LinkedIn Automation",
+  "description": "An automated LinkedIn posting platform that leverages Google trending topics and Gemini AI to generate viral content and high-quality images. Features manual topic entry, bulk scheduling, and fully automated trend-to-post pipelines.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
