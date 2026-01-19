@@ -87,7 +87,7 @@ const isContentChanged =
     if (path.startsWith('data:image')) return path;
     if (path.startsWith('http')) return path;
     const cleanPath = path.startsWith('/') ? path : `/${path}`;
-    return `http://localhost:3002${cleanPath}`;
+    return `https://aipostbe.bastionex.net${cleanPath}`;
   };
   
   const loadPostsOnly = async () => {
@@ -215,7 +215,7 @@ const isContentChanged =
         formData.append("image", preGenerateImage);
         
         const token = localStorage.getItem('token');
-        res = await axios.post('http://localhost:3002/posts/generate', formData, {
+        res = await axios.post('https://aipostbe.bastionex.net/posts/generate', formData, {
           headers: { 
             "Content-Type": "multipart/form-data",
             "Authorization": `Bearer ${token}`

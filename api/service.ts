@@ -2,7 +2,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: process.env.REACT_APP_BACKEND_URL || 'http://localhost:3002', // Provide a fallback
+  baseURL: process.env.REACT_APP_BACKEND_URL || 'https://aipostbe.bastionex.net', // Provide a fallback
 });
 
 // --- AUTH ---
