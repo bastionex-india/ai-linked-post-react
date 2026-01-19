@@ -5,6 +5,24 @@ const API = axios.create({
   baseURL: process.env.REACT_APP_BACKEND_URL || 'https://aipostbe.bastionex.net', // Provide a fallback
 });
 
+
+
+
+const toUTCISOString = (localDateTime) => {
+  if (!localDateTime) return null;
+
+  const date = new Date(localDateTime);
+
+  // Convert local → UTC
+  return new Date(
+    date.getTime() - date.getTimezoneOffset() * 60000
+  ).toISOString();
+};
+
+
+
+
+
 // --- AUTH ---
 export const login = (username, password) =>
   API.post("/login", { username, password });
@@ -21,15 +39,20 @@ export const getTrendingTopics = (industry = "top", page = 1, limit = 5) =>
 export const bulkSchedulePosts = ({ ids, startTime, perDay, manualDate }) =>
   API.post("/posts/bulk-schedule", {
     ids,
-    startTime,
+    startTime: toUTCISOString(startTime),
     perDay: Number(perDay),
-    manualDate,
+    manualDate: toUTCISOString(manualDate),
   });
+
 
 export const approvePost = (id) => API.post(`/posts/approve/${id}`);
 
 export const schedulePost = (id, scheduledAt, autoApprove = false) =>
-  API.post(`/posts/schedule/${id}`, { scheduledAt, autoApprove });
+  API.post(`/posts/schedule/${id}`, {
+    scheduledAt: toUTCISOString(scheduledAt),
+    autoApprove
+  });
+
 export const updatePostContent = (id, content) => API.put(`/posts/update/${id}`, { content });
 export const deletePost = (id) => API.delete(`/posts/delete/${id}`);
 
