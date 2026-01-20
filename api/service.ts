@@ -11,12 +11,7 @@ const API = axios.create({
 const toUTCISOString = (localDateTime) => {
   if (!localDateTime) return null;
 
-  const date = new Date(localDateTime);
-
-  // Convert local → UTC
-  return new Date(
-    date.getTime() - date.getTimezoneOffset() * 60000
-  ).toISOString();
+  return new Date(localDateTime).toISOString();
 };
 
 
